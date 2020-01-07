@@ -1,0 +1,39 @@
+
+
+        ************        ************        *****************
+        * Endorser *        * Verifier *        * Relying Party *
+        ************        *  Owner   *        *  Owner        *
+              |             ************        *****************
+              |                   |                     |
+              |Endorsements       |Appraisal            |Appraisal
+              |                   |Policy for           |Policy for
+              |                   |Evidence             |Attestation
+              |                   |                     |Result
+              v                   v                     |
+         .-----------------------------.                |
+         |           Verifier          |------------.   |
+         '-----------------------------'            |   |
+          ^               | ^            Attestation|   |
+          |               | |                Results|   |
+          |   Endorsements| |                       |   |
+  Evidence|   & Appraisal | |Attestation            v   v
+  of      |   Policy for  | |Results of      .-----------------.
+  Leader  |   Evidence of | |Subordinate     |  Relying Party  |
+  Unit    |   Subordinate | |Units           '-----------------'
+          |   Units       | |
+  .-------|---------------|-|--------------------------------------.
+  |       |               v |                                      |
+  |  .-----------------------------.          .-----------------.  |
+  |  |  .-----------.              |          | Subordinate     |  |
+  |  |  | Attester  |              |   .------| Unit A          |  |
+  |  |  | Component |              |   |      '-----------------'  |
+  |  |  '-----------'              |   |                           |
+  |  |               .-----------. |<--+ Evidence of               |
+  |  |               | Verifier  | |   | Subordinate Units         |
+  |  |               | Component | |   |                           |
+  |  |               '-----------' |   |      .-----------------.  |
+  |  | Leader Unit                 |   '------| Subordinate     |  |
+  |  '-----------------------------'          | Unit B          |  |
+  |                                           '-----------------'  |
+  |  Attester (Composite Device)                                   |
+  '----------------------------------------------------------------'
