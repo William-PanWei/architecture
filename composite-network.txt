@@ -1,0 +1,39 @@
+
+
+        ************        ************        *****************
+        * Endorser *        * Verifier *        * Relying Party *
+        ************        *  Owner   *        *  Owner        *
+              |             ************        *****************
+              |                   |                     |
+              |Endorsements       |Appraisal            |Appraisal
+              |                   |Policy for           |Policy for
+              |                   |Evidence             |Attestation
+              |                   |                     |Result
+              v                   v                     |
+         .-----------------------------.                |
+         |           Verifier          |------------.   |
+         '-----------------------------'            |   |
+          ^               | ^            Attestation|   |
+          |               | |                Results|   |
+          |   Endorsements| |                       |   |
+  Evidence|   & Appraisal | |Attestation            v   v
+  of      |   Policy for  | |Results of      .-----------------.
+  Leader  |   Evidence of | |Subordinate     |  Relying Party  |
+  Device  |   Subordinate | |Devices         '-----------------'
+          |   Devices     | |
+  .-------|---------------|-|--------------------------------------.
+  |       |               v |                                      |
+  |  .-----------------------------.          .-----------------.  |
+  |  |  .-----------.              |          | Subordinate     |  |
+  |  |  | Attester  |              |   .------| Device A        |  |
+  |  |  | Component |              |   |      '-----------------'  |
+  |  |  '-----------'              |   |                           |
+  |  |               .-----------. |<--+ Evidence of               |
+  |  |               | Verifier  | |   | Subordinate Devices       |
+  |  |               | Component | |   |                           |
+  |  | Attester      '-----------' |   |      .-----------------.  |
+  |  | (Leader Device)             |   '------| Subordinate     |  |
+  |  '-----------------------------'          | Device B        |  |
+  |                                           '-----------------'  |
+  |  Composite Network                                             |
+  '----------------------------------------------------------------'
