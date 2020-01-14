@@ -129,7 +129,9 @@ by an administrator.
 
 ## Composite Remote Attestation Data Flow
 
-Many devices are composed of one or more leader units and one or more subordinate units. The leader units are the control or management units and have management interfaces to communicate with outer systems like the Network Management System (NMS). The other subordinate units are for some specific functions and have no management interfaces to communicate outside but can only be managed by the leader units by some kind of inner links. The leader units and subordinate units all have some kind of trusted computing base to measure their trustworthiness. These devices can be called composite devices, and the trustworthiness of the device is therefore only accurately represented by a composite measure that includes all its leader units and subordinate units. A typical example is the carrier-grade switches and routers that have the main control boards as the leader units and the line-processing boards and feature-processing boards as the subordinate units.
+A composite device is composed of several modules that each module can produce a set of "claims" of its trustworthiness and its trustworthiness is independent with other modules. To determine the trustworthiness of this device, it should collect all these sets of "claims" for generating the final Evidence to be verified. 
+
+A typical example is the carrier-grade switches and routers which have several pluggable slots that each one has its own Trusted Platform Module (TPM) to measure its boot process. In this case, each slot produces its own set of "claims" by its "attesting environment" "measuring" its "target environment". Finally, the main slot collects all the "claims" and generates the final Evidence.
 
 {{compositedevice}} depicts the data that flows between different roles for the remote attestation of composite devices.
 
@@ -139,21 +141,23 @@ Many devices are composed of one or more leader units and one or more subordinat
 ~~~~
 {:compositedevice #compositedevice title="Conceptual Data Flow for Composite Device Remote Attestation"}
 
+If considering the composite device as the Attester, then it can be seen as composited of several "Sub-Attester". Each Sub-Attester produces its own set of "claims". One main Sub-Attester collects the "claims" of other Sub-Attesters, then verifies these "claims" by using the Endorsements and Appraisal Policy got from the Verifier and finally produces the verification results as another set of "claims". The Attester generates the final Evidence which contains the verification results of some Sub-Attesters and conveys the Evidence to the Verifier.
+
+
+
+To be polished later:
+
+[Many devices are composed of one or more leader units and one or more subordinate units. The leader units are the control or management units and have management interfaces to communicate with outer systems like the Network Management System (NMS). The other subordinate units are for some specific functions and have no management interfaces to communicate outside but can only be managed by the leader units by some kind of inner links. The leader units and subordinate units all have some kind of trusted computing base to measure their trustworthiness. 
+
+These devices can be called composite devices, and the trustworthiness of the device is therefore only accurately represented by a composite measure that includes all its leader units and subordinate units. A typical example is the carrier-grade switches and routers that have the main control boards as the leader units and the line-processing boards and feature-processing boards as the subordinate units.
+
 As described in the figure, the composite device is the Attester. The leader unit inside the Attester has both the attestation functionality and verification functionality, which is respectively represented as the attester component and verifier component. The leader unit creates the Evidence of itself that is conveyed to the Verifier. Different from the previous overview data flow, in this composite devices data flow the leader unit gets the Endorsements and Evidence Appraisal Policy of the subordinate units from the Verifier, uses that information to verify the trustworthiness of the subordinate units and reports the corresponding verification results to the Verifier.
 
-The Verifier receives and verifies the Evidence of the leader unit, and integrates the result with the received Attestation Results of the subordinate units to generate the Attestation Results of the Attester, i.e. the whole composite device.
+The Verifier receives and verifies the Evidence of the leader unit, and integrates the result with the received Attestation Results of the subordinate units to generate the Attestation Results of the Attester, i.e., the whole composite device.
 
 The composite remote attestations also exist in the networks composed of several devices. For some networks, only a few devices can communicate directly with the NMS, and these devices can act as the proxies for other devices to communicate with the NMS. An example is the router cluster where two or more routers can be clustered as a group to provide the larger performance and reduce the management complexity. The routers among the group are interconnected in a network, but only one leader router is selected to directly communicate with the NMS. The NMS manages other routers through the leader router. The NMS can assess the trustworthiness of the leader router, and the leader router can assess other routers and report the results to the NMS.
 
-{{compositenetwork}} depicts the data that flows between different roles for the remote attestation of networks composed of several devices.
-
-{:compositenetwork: artwork-align="center"}
-~~~~ WHOLEFLOW
-{::include composite-network.txt}
-~~~~
-{:compositenetwork #compositenetwork title="Conceptual Data Flow for Composite Network Remote Attestation"}
-
-This data flow is similar with the previous one. But for this composite network, the leader device is the Attester. The leader device creates the Evidence of itself and conveys it to the Verifier. The leader device also gets the Endorsements and Evidence Appraisal Policy of the subordinate devices from the Verifier, uses that information to verify the trustworthiness of the subordinate devices and reports the corresponding verification results to the Verifier.
+This data flow is similar with the previous one. But for this composite network, the leader device is the Attester. The leader device creates the Evidence of itself and conveys it to the Verifier. The leader device also gets the Endorsements and Evidence Appraisal Policy of the subordinate devices from the Verifier, uses that information to verify the trustworthiness of the subordinate devices and reports the corresponding verification results to the Verifier.]
 
 
 # Topological Models {#overview}
