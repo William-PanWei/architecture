@@ -13,27 +13,27 @@
          .-----------------------------.                |
          |           Verifier          |------------.   |
          '-----------------------------'            |   |
-          ^               | ^            Attestation|   |
-          |               | |                Results|   |
-          |   Endorsements| |                       |   |
-  Evidence|   & Appraisal | |Attestation            v   v
-  of      |   Policy for  | |Results of      .-----------------.
-  Leader  |   Evidence of | |Subordinate     |  Relying Party  |
-  Unit    |   Subordinate | |Units           '-----------------'
-          |   Units       | |
-  .-------|---------------|-|--------------------------------------.
-  |       |               v |                                      |
+              |            ^             Attestation|   |
+              |            |                 Results|   |
+  Endorsements|            |                        |   |
+  & Appraisal |            |Evidence of             v   v
+  Policy for  |            |Composite        .-----------------.
+  Claims of   |            |Device           |  Relying Party  |
+  Sub-attester|            |                 '-----------------'
+              |            |             
+  .-----------|------------|---------------------------------------.
+  |           v            |                                       |
   |  .-----------------------------.          .-----------------.  |
-  |  |  .-----------.              |          | Subordinate     |  |
-  |  |  | Attester  |              |   .------| Unit A          |  |
+  |  |  .-----------.              |          | Sub-attester B  |  |
+  |  |  | Attester  |              |   .------|                 |  |
   |  |  | Component |              |   |      '-----------------'  |
   |  |  '-----------'              |   |                           |
-  |  |               .-----------. |<--+ Evidence of               |
-  |  |               | Verifier  | |   | Subordinate Units         |
+  |  |               .-----------. |<--+ Claims of                 |
+  |  |               | Verifier  | |   | Sub-attester              |
   |  |               | Component | |   |                           |
   |  |               '-----------' |   |      .-----------------.  |
-  |  | Leader Unit                 |   '------| Subordinate     |  |
-  |  '-----------------------------'          | Unit B          |  |
+  |  | Main Sub-attester A         |   '------| Sub-attester B  |  |
+  |  '-----------------------------'          |                 |  |
   |                                           '-----------------'  |
   |  Attester (Composite Device)                                   |
   '----------------------------------------------------------------'
