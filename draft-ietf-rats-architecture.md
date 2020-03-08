@@ -302,6 +302,30 @@ Relying Party:
 : A remote server that will securely grant the Attester
 permission to continue operating (i.e., not reboot) for a period of time
 
+## Network Infrastructure Device
+
+For network operators running network infrastructure devices to provide network
+services to their customers, they want to have insights about the device's integrity.
+So that when detecting the device behaves beyond expectation,
+they can take countermeasures, like quarantining it, to prevent
+undesirable situations such as the leakage of customer privacy.
+
+The network infrastructure devices are usually composite devices.
+For example, a carrier-grade router is consisted of a chassis and multiple slots,
+and each slot has its own CPU and running environment. Among these slots,
+only a main slot can communicate with the operator's management system
+while other slots can only communicate with the main slot by the links
+between them inside the router. 
+
+
+* Attester: The network infrastructure device run by the network operator.
+* Relying Party: The network operator's management system.
+
+
+
+
+
+
 # Architectural Overview
 
 {{dataflow}} depicts the data that flows between different roles, independent of protocol or use case.
